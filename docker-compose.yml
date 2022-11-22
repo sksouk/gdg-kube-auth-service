@@ -1,0 +1,22 @@
+version: "3"
+services:
+  auth-service:
+    image: nodejs
+    container_name: auth-service
+    restart: always
+    build: .
+    ports:
+      - "7000:7000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - auth-network
+
+networks:
+  auth-network:
+    driver: bridge
+    name: auth-network
+
+volumes:
+  node_modules:
